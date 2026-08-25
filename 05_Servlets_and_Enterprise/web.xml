@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                             http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+    <display-name>AdvanceJava Enterprise Web Application</display-name>
+    <description>Core Servlet Configuration and Mapping for Advance Java Repository</description>
+
+    <!-- HelloServlet Configuration -->
+    <servlet>
+        <servlet-name>HelloServlet</servlet-name>
+        <servlet-class>servlets_and_enterprise.HelloServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HelloServlet</servlet-name>
+        <url-pattern>/hello</url-pattern>
+    </servlet-mapping>
+
+    <!-- RequestResponseDemoServlet Configuration -->
+    <servlet>
+        <servlet-name>RequestResponseDemoServlet</servlet-name>
+        <servlet-class>servlets_and_enterprise.RequestResponseDemoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RequestResponseDemoServlet</servlet-name>
+        <url-pattern>/request-response</url-pattern>
+    </servlet-mapping>
+
+    <!-- SessionManagementServlet Configuration -->
+    <servlet>
+        <servlet-name>SessionManagementServlet</servlet-name>
+        <servlet-class>servlets_and_enterprise.SessionManagementServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SessionManagementServlet</servlet-name>
+        <url-pattern>/session-demo</url-pattern>
+    </servlet-mapping>
+
+    <!-- DatabaseServlet Configuration -->
+    <servlet>
+        <servlet-name>DatabaseServlet</servlet-name>
+        <servlet-class>servlets_and_enterprise.DatabaseServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DatabaseServlet</servlet-name>
+        <url-pattern>/database-query</url-pattern>
+    </servlet-mapping>
+
+    <!-- Session Timeout Configuration (30 minutes) -->
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+
+    <!-- Default Welcome Files -->
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+</web-app>

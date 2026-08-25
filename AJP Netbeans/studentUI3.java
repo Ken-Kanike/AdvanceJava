@@ -69,7 +69,7 @@ class Panel1 extends JPanel {
         JLabel l1 = new JLabel("Roll No");
         l1.setFont(new Font("Arial", Font.PLAIN, 20));
         JLabel l2 = new JLabel("Student Name");
-        l2.setFont(new Font("Arial", Font.PLAIN, 20);
+        l2.setFont(new Font("Arial", Font.PLAIN, 20));
         // Add labels for other fields...
 
         stud_roll_no = createTextField();
@@ -137,13 +137,13 @@ class Panel3 extends JPanel {
         lHead.setBounds(350, 30, 400, 40);
 
         JLabel l1 = new JLabel("Enter Student Roll No:");
-        l1.setFont(new Font("Arial", Font.PLAIN, 20);
+        l1.setFont(new Font("Arial", Font.PLAIN, 20));
 
         stud_roll_no = createTextField();
         stud_roll_no.setBounds(350, 100, 200, 30);
 
         studTa = new JTextArea(5, 10);
-        studTa.setFont(new Font("Arial", Font.PLAIN, 20);
+        studTa.setFont(new Font("Arial", Font.PLAIN, 20));
         studTa.setBounds(350, 150, 400, 200);
 
         JButton b1 = createButton("Submit");

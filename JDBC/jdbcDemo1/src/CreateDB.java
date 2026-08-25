@@ -12,7 +12,7 @@ public class CreateDB
 
             String dbName ="db";
             String user = "root";
-            String pass = "JUNAID@shaikh1240";
+            String pass = "password123";
 
             Connection con = DriverManager.getConnection(url, user, pass);
 

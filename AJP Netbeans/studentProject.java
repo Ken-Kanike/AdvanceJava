@@ -265,7 +265,7 @@ public class studentProject {
     {
        Class.forName("com.mysql.cj.jdbc.Driver");
         System.out.println("Driver loaded");
-        Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/studentdb_ajpmp","****","**********");
+        Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/studentdb_ajpmp","root","password123");
         System.out.println("Dtabase connected");
         Statement st = con.createStatement();
         
@@ -364,7 +364,7 @@ public class studentProject {
         String name;
         int sal;
         Scanner sc = new Scanner(System.in);
-             String q2 = "INSERT INTO `studentdb_ajpmp`.`student_info` (`roll_stud_no`, `stud_name`, `section`, `subject`, `class`, `pr_marks`, `ct1_marks`, `ct2_marks`, `tut_marks`, `manual_marks`) VALUES ('2', 'Junaid', 'CO', 'AJP', 'TY', '23', '18', '20', '15', '23');";
+             String q2 = "INSERT INTO `studentdb_ajpmp`.`student_info` (`roll_stud_no`, `stud_name`, `section`, `subject`, `class`, `pr_marks`, `ct1_marks`, `ct2_marks`, `tut_marks`, `manual_marks`) VALUES ('2', 'Alice Johnson', 'CO', 'AJP', 'TY', '23', '18', '20', '15', '23');";
              int i= st.executeUpdate(q2);
              if(i>0)
              System.out.println("Record inserted");

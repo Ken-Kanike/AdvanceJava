@@ -10,7 +10,7 @@ public class AjpMicroProjectFinal {
             
         Class.forName("com.mysql.cj.jdbc.Driver");
         System.out.println("Driver loaded");
-        Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/demo","root","JUNAID@shaikh1240");
+        Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/demo","root","password123");
         System.out.println("Dtabase connected");
         Statement st = con.createStatement();
         Scanner sc = new Scanner(System.in);

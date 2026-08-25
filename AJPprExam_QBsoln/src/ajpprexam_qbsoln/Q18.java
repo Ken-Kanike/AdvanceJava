@@ -14,7 +14,7 @@ public class Q18 {
         try {
                     Class.forName("com.mysql.cj.jdbc.Driver");   // throws ClassNotFoundException
                     System.out.println("Driver loaded");
-                    Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/demo","root","JUNAID@shaikh1240");  // throws  SQLException
+                    Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/demo","root","password123");  // throws  SQLException
                     System.out.println("Dtabase connected");
                     Statement st = con.createStatement();
                     System.out.println("statement created");

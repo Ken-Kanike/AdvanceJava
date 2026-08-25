@@ -11,7 +11,7 @@ import java.sql.*;
 
 /**
  *
- * @author junai
+ * @author AdvanceJava Learner
  */
 class MyFrame extends Frame  implements ActionListener
 {
@@ -37,7 +37,7 @@ TextField t1=new TextField();
         try{
 Class.forName("com.mysql.cj.jdbc.Driver");
         System.out.println("Driver loaded");
-        Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/demo","root","JUNAID@shaikh1240");
+        Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/demo","root","password123");
         System.out.println("Dtabase connected");
         String SQL="insert into demo.emptable values(?,?,?)";
             PreparedStatement pst=con.prepareStatement(SQL);
