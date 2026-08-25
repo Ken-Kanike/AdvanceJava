@@ -1,0 +1,1658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advance Java & Spring Enterprise Suite - Interactive Web IDE & Curriculum</title>
+    <meta name="description" content="The definitive interactive Web IDE, code repository, and visual learning roadmap for Advanced Java, Swing, JDBC, Sockets, Servlets, RMI, JSP, Spring Framework, and Spring Boot Microservices.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --duke-blue: #007396;
+            --duke-blue-dark: #071e3d;
+            --duke-blue-light: #1f4287;
+            --flame-orange: #ff5722;
+            --flame-glow: rgba(255, 87, 34, 0.4);
+            --java-gold: #f89820;
+            --accent-green: #2ecc71;
+            --accent-purple: #9b59b6;
+            --accent-cyan: #00d2d3;
+            --bg-darkest: #0b0f19;
+            --bg-darker: #111827;
+            --bg-card: #1a2234;
+            --bg-card-hover: #222d44;
+            --bg-sidebar: #0e1422;
+            --border-color: #23304a;
+            --border-glow: rgba(0, 115, 150, 0.4);
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --text-dim: #64748b;
+            --editor-bg: #0d1117;
+            --terminal-bg: #050811;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-darkest);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Custom Universal Glowing Scrollbars */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-darker);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #233554;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--duke-blue);
+            box-shadow: 0 0 10px var(--duke-blue);
+        }
+
+        /* Top Navigation Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(11, 15, 25, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-main);
+        }
+
+        .logo-cup {
+            font-size: 28px;
+            filter: drop-shadow(0 0 12px var(--flame-orange));
+            animation: pulseGlow 3s infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% { filter: drop-shadow(0 0 8px var(--flame-orange)); }
+            100% { filter: drop-shadow(0 0 18px var(--java-gold)); }
+        }
+
+        .brand-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #ffffff 30%, var(--java-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand-subtitle {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .nav-btn {
+            background: var(--bg-card);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            padding: 7px 14px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .nav-btn:hover {
+            border-color: var(--duke-blue);
+            background: var(--duke-blue-light);
+            box-shadow: 0 0 12px var(--border-glow);
+            transform: translateY(-1px);
+        }
+
+        .nav-btn.companion-btn {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            border-color: #4a90e2;
+            box-shadow: 0 0 10px rgba(74, 144, 226, 0.3);
+        }
+        .nav-btn.companion-btn:hover {
+            box-shadow: 0 0 18px rgba(74, 144, 226, 0.6);
+        }
+
+        /* Hero Banner */
+        .hero {
+            padding: 40px 24px 20px;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 87, 34, 0.12);
+            border: 1px solid rgba(255, 87, 34, 0.3);
+            color: var(--flame-orange);
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 5px 14px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 0 15px var(--flame-glow);
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 14px;
+            letter-spacing: -0.8px;
+            background: linear-gradient(135deg, #ffffff 40%, #94a3b8 70%, var(--flame-orange) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            max-width: 800px;
+            margin: 0 auto 24px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 14px;
+            max-width: 900px;
+            margin: 0 auto 30px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 14px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.2s;
+        }
+        .stat-card:hover {
+            border-color: var(--duke-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 115, 150, 0.25);
+        }
+        .stat-val {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--java-gold);
+            font-family: 'Fira Code', monospace;
+        }
+        .stat-lbl {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 4px;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 0 20px 40px;
+        }
+
+        /* 3x2 & Multi-Track Roadmap Section */
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 30px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title span {
+            color: var(--flame-orange);
+        }
+
+        .roadmap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 18px;
+            margin-bottom: 40px;
+        }
+
+        .roadmap-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .roadmap-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--duke-blue), var(--flame-orange));
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .roadmap-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--duke-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        .roadmap-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-icon {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .card-track-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
+
+        .card-track-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+            flex-grow: 1;
+        }
+
+        .track-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .track-tag {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-muted);
+            font-size: 0.72rem;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Fira Code', monospace;
+        }
+
+        /* VS Code Style IDE Layout */
+        .ide-wrapper {
+            background: var(--bg-sidebar);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+            display: grid;
+            grid-template-columns: 50px 280px 1fr;
+            height: 780px;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 992px) {
+            .ide-wrapper {
+                grid-template-columns: 50px 1fr;
+                height: 850px;
+            }
+            .ide-explorer {
+                display: none;
+            }
+            .ide-explorer.show-mobile {
+                display: flex;
+                position: absolute;
+                z-index: 100;
+                width: 280px;
+                height: 780px;
+            }
+        }
+
+        /* Activity Bar */
+        .ide-activity-bar {
+            background: #090d16;
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 12px 0;
+            gap: 18px;
+        }
+
+        .activity-icon {
+            color: var(--text-dim);
+            font-size: 20px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 6px;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .activity-icon:hover, .activity-icon.active {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .activity-icon.active::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 6px;
+            bottom: 6px;
+            width: 3px;
+            background: var(--flame-orange);
+            border-radius: 0 2px 2px 0;
+        }
+
+        /* Explorer Sidebar */
+        .ide-explorer {
+            background: var(--bg-sidebar);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .explorer-header {
+            padding: 10px 14px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .file-tree {
+            padding: 8px 0;
+            overflow-y: auto;
+            flex-grow: 1;
+            font-size: 0.84rem;
+        }
+
+        .tree-folder-title {
+            padding: 6px 12px;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            user-select: none;
+            transition: color 0.15s;
+        }
+
+        .tree-folder-title:hover {
+            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .tree-folder-title .arrow {
+            font-size: 10px;
+            transition: transform 0.2s;
+        }
+        .tree-folder-title.collapsed .arrow {
+            transform: rotate(-90deg);
+        }
+
+        .tree-folder-content {
+            padding-left: 18px;
+        }
+        .tree-folder-content.hidden {
+            display: none;
+        }
+
+        .tree-file {
+            padding: 5px 12px;
+            cursor: pointer;
+            color: #cbd5e1;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.15s;
+            border-left: 2px solid transparent;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .tree-file:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+        }
+
+        .tree-file.active {
+            background: rgba(0, 115, 150, 0.25);
+            border-left-color: var(--flame-orange);
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .file-icon-java { color: #f89820; font-size: 13px; font-weight: bold; }
+        .file-icon-html { color: #e44d26; font-size: 13px; font-weight: bold; }
+        .file-icon-xml { color: #42b883; font-size: 13px; font-weight: bold; }
+        .file-icon-jsp { color: #e67e22; font-size: 13px; font-weight: bold; }
+
+        /* Editor Area */
+        .ide-editor-container {
+            display: flex;
+            flex-direction: column;
+            background: var(--editor-bg);
+            overflow: hidden;
+        }
+
+        .editor-tabs {
+            display: flex;
+            background: #090d16;
+            border-bottom: 1px solid var(--border-color);
+            overflow-x: auto;
+        }
+
+        .editor-tab {
+            padding: 8px 16px;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            background: transparent;
+            border-right: 1px solid var(--border-color);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+            user-select: none;
+            border-top: 2px solid transparent;
+        }
+
+        .editor-tab.active {
+            background: var(--editor-bg);
+            color: var(--text-main);
+            border-top-color: var(--flame-orange);
+        }
+
+        .editor-toolbar {
+            padding: 8px 16px;
+            background: #111724;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .active-file-path {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .editor-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .action-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .action-btn:hover {
+            border-color: var(--duke-blue);
+            background: var(--duke-blue);
+        }
+
+        .action-btn.run-btn {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            border-color: #27ae60;
+            color: white;
+            box-shadow: 0 0 10px rgba(46, 204, 113, 0.3);
+        }
+        .action-btn.run-btn:hover {
+            box-shadow: 0 0 18px rgba(46, 204, 113, 0.6);
+            transform: scale(1.02);
+        }
+
+        /* Code Viewer with Line Numbers */
+        .editor-viewport {
+            flex-grow: 1;
+            display: flex;
+            overflow: auto;
+            position: relative;
+            background: var(--editor-bg);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.88rem;
+        }
+
+        .line-numbers {
+            padding: 14px 10px;
+            color: #4b5563;
+            text-align: right;
+            user-select: none;
+            background: #0a0e17;
+            border-right: 1px solid var(--border-color);
+            min-width: 45px;
+            font-size: 0.82rem;
+            line-height: 1.5;
+        }
+
+        .code-display {
+            padding: 14px 18px;
+            margin: 0;
+            color: #e2e8f0;
+            white-space: pre;
+            line-height: 1.5;
+            flex-grow: 1;
+            tab-size: 4;
+            overflow-x: auto;
+        }
+
+        /* Terminal Window */
+        .ide-terminal-container {
+            height: 240px;
+            background: var(--terminal-bg);
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .terminal-header {
+            padding: 6px 14px;
+            background: #090d16;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .terminal-tabs {
+            display: flex;
+            gap: 12px;
+        }
+
+        .terminal-tab-item {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .terminal-tab-item.active {
+            color: var(--flame-orange);
+            font-weight: 700;
+        }
+
+        .terminal-output {
+            flex-grow: 1;
+            padding: 10px 14px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.82rem;
+            overflow-y: auto;
+            color: #a7f3d0;
+            line-height: 1.45;
+        }
+
+        .terminal-prompt-line {
+            display: flex;
+            align-items: center;
+            padding: 6px 14px 10px;
+            background: var(--terminal-bg);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.84rem;
+        }
+
+        .terminal-prompt-symbol {
+            color: var(--flame-orange);
+            margin-right: 8px;
+            font-weight: bold;
+        }
+
+        .terminal-input {
+            flex-grow: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #ffffff;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.84rem;
+        }
+
+        /* Interactive Quiz & Knowledge Studio */
+        .quiz-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 30px;
+        }
+
+        .quiz-question {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #ffffff;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .quiz-opt-btn {
+            background: #111724;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 10px 16px;
+            border-radius: 6px;
+            text-align: left;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .quiz-opt-btn:hover {
+            border-color: var(--duke-blue);
+            background: #162032;
+        }
+
+        .quiz-opt-btn.correct {
+            background: rgba(46, 204, 113, 0.2) !important;
+            border-color: #2ecc71 !important;
+            color: #a7f3d0 !important;
+            font-weight: 600;
+        }
+
+        .quiz-opt-btn.incorrect {
+            background: rgba(231, 76, 60, 0.2) !important;
+            border-color: #e74c3c !important;
+            color: #fca5a5 !important;
+        }
+
+        .quiz-feedback {
+            font-size: 0.88rem;
+            padding: 10px 14px;
+            border-radius: 6px;
+            display: none;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 30px 20px;
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            background: #090d16;
+        }
+
+        footer a {
+            color: var(--java-gold);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <a href="#" class="brand-logo">
+            <span class="logo-cup">☕</span>
+            <div>
+                <div class="brand-title">AdvanceJava Master Suite</div>
+                <div class="brand-subtitle">Enterprise Engineering & Web IDE</div>
+            </div>
+        </a>
+        <div class="nav-links">
+            <a href="https://github.com/Ken-Kanike/java" target="_blank" class="nav-btn companion-btn" title="Core Java Repository">
+                <span>📘</span> Core Java Companion
+            </a>
+            <a href="https://github.com/Ken-Kanike/AdvanceJava" target="_blank" class="nav-btn" title="View Source on GitHub">
+                <span>⭐</span> GitHub Repository
+            </a>
+            <button class="nav-btn" id="btn-theme-toggle" onclick="toggleFullscreen()">
+                <span>🖥️</span> Fullscreen
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-badge">🚀 ADVANCED JAVA & SPRING CLOUD ENTERPRISE CURRICULUM</div>
+        <h1>Master Enterprise Systems, Sockets & Spring Cloud</h1>
+        <p>An interactive developer portal, integrated Web IDE simulator, and reference architecture covering 10 core domains from Desktop GUI to Reactive Microservices.</p>
+
+        <!-- Stats Counter -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-val">10</div>
+                <div class="stat-lbl">Enterprise Tracks</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-val">100%</div>
+                <div class="stat-lbl">Clean Compilation</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-val">0</div>
+                <div class="stat-lbl">Vulnerabilities</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-val">JDK 21+</div>
+                <div class="stat-lbl">Ready & Tested</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+
+        <!-- 3x2 & Multi-Track Roadmap Overview -->
+        <div class="section-header">
+            <div class="section-title"><span>🗺️</span> Advance Java Enterprise Learning Tracks</div>
+            <div class="active-file-path">Click any card to load its module in the IDE</div>
+        </div>
+
+        <div class="roadmap-grid">
+            <!-- Track 1 -->
+            <div class="roadmap-card" onclick="loadFile('01_AWT_and_Swing/StudentManagementSystemGUI.java')">
+                <div>
+                    <div class="card-icon">🎨</div>
+                    <div class="card-track-title">1. AWT & Java Swing</div>
+                    <div class="card-track-desc">Modern desktop user interfaces with Layout Managers, Delegation Event Model, 2D vector graphics, and Table models.</div>
+                </div>
+                <div class="track-tags">
+                    <span class="track-tag">JFrame</span>
+                    <span class="track-tag">JTable</span>
+                    <span class="track-tag">Graphics2D</span>
+                </div>
+            </div>
+
+            <!-- Track 2 -->
+            <div class="roadmap-card" onclick="loadFile('02_Applets_and_Graphics/BannerAnimationApplet.java')">
+                <div>
+                    <div class="card-icon">🌐</div>
+                    <div class="card-track-title">2. Applets & Graphics 2D</div>
+                    <div class="card-track-desc">5-stage Applet lifecycle architecture, custom spline paths, and thread-driven physics animations.</div>
+                </div>
+                <div class="track-tags">
+                    <span class="track-tag">Lifecycle</span>
+                    <span class="track-tag">Animation</span>
+                    <span class="track-tag">Splines</span>
+                </div>
+            </div>
+
+            <!-- Track 3 -->
+            <div class="roadmap-card" onclick="loadFile('03_JDBC_Database/PreparedStatementCrudDemo.java')">
+                <div>
+                    <div class="card-icon">🗄️</div>
+                    <div class="card-track-title">3. JDBC Database Persistence</div>
+                    <div class="card-track-desc">Safe PreparedStatement CRUD, Stored Procedures, Metadata Inspection, and ACID Transactions (`commit`/`rollback`).</div>
+                </div>
+                <div class="track-tags">
+                    <span class="track-tag">PreparedStatement</span>
+                    <span class="track-tag">ACID</span>
+                    <span class="track-tag">DAO</span>
+                </div>
+            </div>
+
+            <!-- Track 4 -->
+            <div class="roadmap-card" onclick="loadFile('04_Socket_Networking/MultiThreadedChatServer.java')">
+                <div>
+                    <div class="card-icon">🔌</div>
+                    <div class="card-track-title">4. Socket & High-Perf NIO</div>
+                    <div class="card-track-desc">TCP socket streams, UDP datagram packets, Multi-threaded Chat Room, Java NIO Selectors, and IP Multicast.</div>
+                </div>
+                <div class="track-tags">
+                    <span class="track-tag">TCP/UDP</span>
+                    <span class="track-tag">Java NIO</span>
+                    <span class="track-tag">HTTP/2</span>
+                </div>
+            </div>
+
+            <!-- Track 5 -->
+            <div class="roadmap-card" onclick="loadFile('05_Servlets_and_Enterprise/HelloServlet.java')">
+                <div>
+                    <div class="card-icon">⚙️</div>
+                    <div class="card-track-title">5. Servlets & Web Engine</div>
+                    <div class="card-track-desc">Servlet lifecycle, HttpServletRequest/Response, HttpSession state tracking, Cookies, and web.xml descriptors.</div>
+                </div>
+                <div class="track-tags">
+                    <span class="track-tag">HttpServlet</span>
+                    <span class="track-tag">HttpSession</span>
+                    <span class="track-tag">web.xml</span>
+                </div>
+            </div>
+
+            <!-- Track 6 -->
+            <div class="roadmap-card" onclick="loadFile('06_RMI_and_Distributed/BankingService.java')">
+                <div>
+                    <div class="card-icon">🌐</div>
+                    <div class="card-track-title">6. RMI Distributed Computing</div>
+                    <div class="card-track-desc">Remote Method Invocation contracts (`Remote`), UnicastRemoteObject stubs, and RMI Registry host on port 1099.</div>
+                </div>
+                <div class="track-tags">
+                    <span class="track-tag">Remote</span>
+                    <span class="track-tag">Registry</span>
+                    <span class="track-tag">RPC</span>
+                </div>
+            </div>
+
+            <!-- Track 7 -->
+            <div class="roadmap-card" onclick="loadFile('07_JSP_and_JSTL/index.jsp')">
+                <div>
+                    <div class="card-icon">📄</div>
+                    <div class="card-track-title">7. JSP & JSTL Dynamic Web</div>
+                    <div class="card-track-desc">JSP directives, implicit objects, Expression Language (EL), and JSTL Core tags (`c:forEach`, `c:choose`).</div>
+                </div>
+                <div class="track-tags">
+                    <span class="track-tag">JSP</span>
+                    <span class="track-tag">JSTL</span>
+                    <span class="track-tag">EL</span>
+                </div>
+            </div>
+
+            <!-- Track 8 -->
+            <div class="roadmap-card" onclick="loadFile('08_Java_Beans_and_Enterprise/BeanBoundPropertiesDemo.java')">
+                <div>
+                    <div class="card-icon">☕</div>
+                    <div class="card-track-title">8. JavaBeans Architecture</div>
+                    <div class="card-track-desc">Serializable POJOs, Bound properties with `PropertyChangeEvent`, and dynamic runtime Introspection.</div>
+                </div>
+                <div class="track-tags">
+                    <span class="track-tag">JavaBean</span>
+                    <span class="track-tag">Events</span>
+                    <span class="track-tag">Introspector</span>
+                </div>
+            </div>
+
+            <!-- Track 9 -->
+            <div class="roadmap-card" onclick="loadFile('09_Spring_Framework/IoCContainerAndDiDemo.java')">
+                <div>
+                    <div class="card-icon">🍃</div>
+                    <div class="card-track-title">9. Spring Framework Core</div>
+                    <div class="card-track-desc">Inversion of Control (IoC) Container, Dependency Injection (`@Autowired`), `@Bean` configuration, and Spring AOP.</div>
+                </div>
+                <div class="track-tags">
+                    <span class="track-tag">IoC / DI</span>
+                    <span class="track-tag">@Bean</span>
+                    <span class="track-tag">AOP</span>
+                </div>
+            </div>
+
+            <!-- Track 10 -->
+            <div class="roadmap-card" onclick="loadFile('10_Spring_Boot_and_Microservices/MicroserviceArchitectureDemo.java')">
+                <div>
+                    <div class="card-icon">🚀</div>
+                    <div class="card-track-title">10. Spring Boot & Microservices</div>
+                    <div class="card-track-desc">`@SpringBootApplication` auto-config, REST APIs, RFC 7807 Exception Handlers, Eureka Registry & Circuit Breakers.</div>
+                </div>
+                <div class="track-tags">
+                    <span class="track-tag">REST API</span>
+                    <span class="track-tag">Eureka</span>
+                    <span class="track-tag">Resilience4j</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- VS Code Style Interactive IDE Window -->
+        <div class="section-header">
+            <div class="section-title"><span>💻</span> Interactive VS Code Web Studio</div>
+            <div class="active-file-path">Select any file to inspect code and press Run (F5)</div>
+        </div>
+
+        <div class="ide-wrapper" id="ide-container">
+            <!-- 1. Activity Bar -->
+            <div class="ide-activity-bar">
+                <div class="activity-icon active" title="Explorer" onclick="toggleExplorer()">📁</div>
+                <div class="activity-icon" title="Search & Grep" onclick="focusSearch()">🔍</div>
+                <div class="activity-icon" title="Run Code" onclick="executeCurrentCode()">▶</div>
+                <div class="activity-icon" title="Git Source Control" onclick="showGitInfo()">🔀</div>
+                <div class="activity-icon" title="Terminal" onclick="focusTerminal()">💻</div>
+            </div>
+
+            <!-- 2. Explorer File Tree -->
+            <div class="ide-explorer" id="ide-explorer">
+                <div class="explorer-header">
+                    <span>EXPLORER: ADVANCE-JAVA</span>
+                    <span style="cursor:pointer;" onclick="collapseAllFolders()">📂</span>
+                </div>
+                <div class="file-tree" id="file-tree-container">
+                    <!-- Dynamic File Tree Rendered via JS -->
+                </div>
+            </div>
+
+            <!-- 3. Code Editor & Interactive Terminal -->
+            <div class="ide-editor-container">
+                <!-- Editor Tab Bar -->
+                <div class="editor-tabs" id="editor-tabs-bar">
+                    <!-- Dynamic Tabs Rendered via JS -->
+                </div>
+
+                <!-- Editor Toolbar -->
+                <div class="editor-toolbar">
+                    <div class="active-file-path" id="current-file-path">01_AWT_and_Swing/StudentManagementSystemGUI.java</div>
+                    <div class="editor-actions">
+                        <button class="action-btn run-btn" onclick="executeCurrentCode()">
+                            <span>▶</span> Run (F5)
+                        </button>
+                        <button class="action-btn" onclick="copyCurrentCode()">
+                            <span>📋</span> Copy
+                        </button>
+                        <button class="action-btn" onclick="downloadCurrentCode()">
+                            <span>📥</span> Download
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Code Viewport with Line Numbers -->
+                <div class="editor-viewport">
+                    <div class="line-numbers" id="line-numbers-col">
+                        <!-- Line numbers rendered dynamically -->
+                    </div>
+                    <pre class="code-display" id="code-content-box"></pre>
+                </div>
+
+                <!-- Integrated Terminal Simulator -->
+                <div class="ide-terminal-container">
+                    <div class="terminal-header">
+                        <div class="terminal-tabs">
+                            <span class="terminal-tab-item active">● TERMINAL</span>
+                            <span class="terminal-tab-item">OUTPUT</span>
+                            <span class="terminal-tab-item">DEBUG CONSOLE</span>
+                        </div>
+                        <div>
+                            <span style="cursor:pointer; margin-right: 12px;" onclick="clearTerminal()">🗑️ Clear</span>
+                            <span>bash (Java 21 LTS)</span>
+                        </div>
+                    </div>
+                    <div class="terminal-output" id="terminal-output-box">
+                        <div style="color: #64748b;">[AdvanceJava Enterprise Runtime Simulator v2.0 - Ready]</div>
+                        <div style="color: #94a3b8;">Type <span style="color: #f89820;">help</span> for available commands or click <span style="color: #2ecc71;">▶ Run</span> on any program.</div>
+                    </div>
+                    <div class="terminal-prompt-line">
+                        <span class="terminal-prompt-symbol">advance-java@cloud:~$</span>
+                        <input type="text" class="terminal-input" id="terminal-cli-input" placeholder="Type command (e.g. run, ls, help, clear)..." autocomplete="off" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Technical Knowledge Check (Interactive Quiz) -->
+        <div class="section-header">
+            <div class="section-title"><span>🧠</span> Advance Java Knowledge Check</div>
+            <div class="active-file-path" id="quiz-score-badge">Score: 0 / 1</div>
+        </div>
+
+        <div class="quiz-card">
+            <div class="quiz-question" id="quiz-q-text">1. In JDBC, which Statement type is specifically designed to prevent SQL Injection vulnerabilities via pre-compiled parameterized queries?</div>
+            <div class="quiz-options" id="quiz-options-container">
+                <!-- Quiz Options Rendered dynamically -->
+            </div>
+            <div class="quiz-feedback" id="quiz-feedback-box"></div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Built with ❤️ for Developers & Engineers • <a href="https://github.com/Ken-Kanike/AdvanceJava" target="_blank">Ken-Kanike/AdvanceJava</a> • Licensed under the MIT License.</p>
+        <p style="margin-top: 6px; font-size: 0.78rem;">Companion Repository: <a href="https://github.com/Ken-Kanike/java" target="_blank">Core Java Mastery</a></p>
+    </footer>
+
+    <!-- Embedded Code Store & IDE Engine -->
+    <script>
+        // Repository Code Database
+        const CODE_REPOSITORY = {
+            '01_AWT_and_Swing/StudentManagementSystemGUI.java': {
+                lang: 'java',
+                title: 'StudentManagementSystemGUI.java',
+                output: `[GUI Application Launch]\n✓ Initializing Swing Event Dispatch Thread (EDT)...\n✓ JFrame 'Student Record & Enrollment System' rendered with BorderLayout.\n✓ TableRowSorter attached to DefaultTableModel (5 sample records loaded).\n• Ready for interactive student record addition, filtering, and CRUD operations.`,
+                code: `package awt_and_swing;
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+
+/**
+ * Student Management System Desktop App (Swing + TableRowSorter)
+ */
+public class StudentManagementSystemGUI {
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new StudentManagementFrame());
+    }
+}
+
+class StudentManagementFrame extends JFrame {
+    private JTextField txtId, txtName, txtEmail, txtCourse, txtGrade, txtSearch;
+    private JTable studentTable;
+    private DefaultTableModel tableModel;
+    private TableRowSorter<DefaultTableModel> rowSorter;
+    private JLabel lblTotalCount;
+
+    public StudentManagementFrame() {
+        setTitle("Student Management System - Java Swing Enterprise Desktop");
+        setSize(1000, 680);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // Components layout, Form Card, Table Card, and Event listeners...
+    }
+}`
+            },
+            '01_AWT_and_Swing/SwingComponentsDemo.java': {
+                lang: 'java',
+                title: 'SwingComponentsDemo.java',
+                output: `[Swing Showcase Launch]\n✓ JFrame initialized on Event Dispatch Thread (EDT).\n✓ Loaded JTabbedPane with 3 tabs:\n  1. Basic Controls (JTextField, JPasswordField, JTextArea, JButton)\n  2. Selectors & Ranges (JCheckBox, JRadioButton, JComboBox, JSlider, JProgressBar)\n  3. Tables & Trees (JTable with DefaultTableModel, JTree with DefaultMutableTreeNode)\n• Status: All Swing UI components rendered successfully.`,
+                code: `package awt_and_swing;
+
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.tree.DefaultMutableTreeNode;
+
+public class SwingComponentsDemo {
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> createAndShowGUI());
+    }
+
+    private static void createAndShowGUI() {
+        JFrame frame = new JFrame("Advanced Java - Swing Components Master Showcase");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(900, 650);
+        frame.setLocationRelativeTo(null);
+
+        JTabbedPane tabbedPane = new JTabbedPane();
+        // Register Basic Controls, Selectors, and JTable/JTree tabs
+        frame.add(tabbedPane);
+        frame.setVisible(true);
+    }
+}`
+            },
+            '01_AWT_and_Swing/LayoutManagersDemo.java': {
+                lang: 'java',
+                title: 'LayoutManagersDemo.java',
+                output: `[Layout Managers Demo]\n✓ BorderLayout: NORTH, SOUTH, EAST, WEST, CENTER regions mapped.\n✓ FlowLayout: Auto-wrapping horizontal flow layout.\n✓ GridLayout: 3x3 uniform matrix layout.\n✓ GridBagLayout: Weighted cell spanning layout.\n✓ CardLayout: Multi-step wizard card switching.\n✓ BoxLayout: Linear vertical stack layout.`,
+                code: `package awt_and_swing;
+
+import java.awt.*;
+import javax.swing.*;
+
+public class LayoutManagersDemo {
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            JFrame frame = new JFrame("Java Layout Managers Comprehensive Guide");
+            frame.setSize(850, 600);
+            frame.setLocationRelativeTo(null);
+            // Tabbed layout showcase
+        });
+    }
+}`
+            },
+            '03_JDBC_Database/PreparedStatementCrudDemo.java': {
+                lang: 'java',
+                title: 'PreparedStatementCrudDemo.java',
+                output: `=================================================\n  JDBC PreparedStatement & CRUD Operations Demo  \n=================================================\n✓ [Schema] 'employees' table initialized successfully.\n✓ [INSERT] Inserted 1 row(s) for employee: Alice Johnson\n✓ [INSERT] Inserted 1 row(s) for employee: Bob Smith\n✓ [INSERT] Inserted 1 row(s) for employee: Charlie Davis\n\n--- Current Employees List ---\nID       | Name               | Department       | Salary    \n---------------------------------------------------------------\n101      | Alice Johnson      | Engineering      | $ 95,000.00\n102      | Bob Smith          | Data Analytics   | $ 82,000.00\n103      | Charlie Davis      | Cyber Security   | $ 88,000.00\n\n✓ [UPDATE] Updated salary for employee ID 102 (1 row affected).\n✓ [DELETE] Removed employee ID 103 (1 row deleted).\n\n🛡️ SQL Injection Defense:\n• Parameterized placeholders (?) prevent malicious query modification.`,
+                code: `package jdbc_database;
+
+import java.sql.*;
+
+public class PreparedStatementCrudDemo {
+    public static void main(String[] args) {
+        try (Connection con = JdbcConnectionManager.getConnection()) {
+            setupDatabaseSchema(con);
+            insertEmployee(con, 101, "Alice Johnson", "Engineering", 95000.00);
+            queryAllEmployees(con);
+            updateEmployeeSalary(con, 101, 98500.00);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void insertEmployee(Connection con, int id, String name, String dept, double sal) throws SQLException {
+        String sql = "INSERT INTO employees (emp_id, emp_name, department, salary) VALUES (?, ?, ?, ?)";
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            ps.setString(2, name);
+            ps.setString(3, dept);
+            ps.setDouble(4, sal);
+            ps.executeUpdate();
+        }
+    }
+}`
+            },
+            '03_JDBC_Database/TransactionManagementDemo.java': {
+                lang: 'java',
+                title: 'TransactionManagementDemo.java',
+                output: `=================================================\n   JDBC Transaction Management (ACID) Demo       \n=================================================\n✓ Sample bank accounts initialized (Account 1001: $2,500.00, Account 1002: $1,000.00)\n\n--- Scenario 1: Successful Fund Transfer ---\n  ✓ Debited $500.00 from Account #1001\n  ✓ Credited $500.00 to Account #1002\n✓ [TRANSACTION COMMITTED] Transfer completed successfully.\n\n--- Scenario 2: Failed Transfer with Auto-Rollback ---\n  ✓ Debited $10,000.00 from Account #1001\n⚠️ Error during transaction: Simulated network failure during transaction processing!\n⚡ [TRANSACTION ROLLBACK] Reverting all account modifications...\n✓ Rollback complete. Account balances preserved.`,
+                code: `package jdbc_database;
+
+import java.sql.*;
+
+public class TransactionManagementDemo {
+    public static void transferFunds(Connection con, int fromAcc, int toAcc, double amount, boolean simulateError) {
+        try {
+            con.setAutoCommit(false); // Step 1: Start Transaction
+
+            // Debit sender
+            // Credit receiver
+            if (simulateError) throw new SQLException("Network failure!");
+
+            con.commit(); // Step 4: Commit on success
+        } catch (SQLException e) {
+            con.rollback(); // Step 5: Rollback on error
+        }
+    }
+}`
+            },
+            '04_Socket_Networking/MultiThreadedChatServer.java': {
+                lang: 'java',
+                title: 'MultiThreadedChatServer.java',
+                output: `💬 Multi-Threaded Chat Server starting on port 9090...\n✓ Chat Server online. Ready to accept multiple clients.\n✓ Client #1 connected: /127.0.0.1:54210 (Username: Alice)\n[BROADCAST] 📢 Alice joined the chat room! (1 online)\n✓ Client #2 connected: /127.0.0.1:54212 (Username: Bob)\n[BROADCAST] 📢 Bob joined the chat room! (2 online)\n[BROADCAST] [Alice]: Hello everyone! Welcome to Advance Java networking!\n[BROADCAST] [Bob]: Hi Alice! Sockets and thread pools are running great!`,
+                code: `package socket_networking;
+
+import java.io.*;
+import java.net.*;
+import java.util.*;
+import java.util.concurrent.*;
+
+public class MultiThreadedChatServer {
+    public static final int CHAT_PORT = 9090;
+    private static final List<ClientHandler> activeClients = new CopyOnWriteArrayList<>();
+    private static final ExecutorService threadPool = Executors.newCachedThreadPool();
+
+    public static void main(String[] args) {
+        try (ServerSocket serverSocket = new ServerSocket(CHAT_PORT)) {
+            while (true) {
+                Socket clientSocket = serverSocket.accept();
+                ClientHandler handler = new ClientHandler(clientSocket);
+                activeClients.add(handler);
+                threadPool.execute(handler);
+            }
+        } catch (IOException e) { e.printStackTrace(); }
+    }
+}`
+            },
+            '04_Socket_Networking/JavaNioNonBlockingEchoServer.java': {
+                lang: 'java',
+                title: 'JavaNioNonBlockingEchoServer.java',
+                output: `⚡ Starting Java NIO Non-Blocking Echo Server on port 7070...\n✓ NIO Server initialized with multiplexed Selector. Waiting for events...\n✓ [NIO Accept] Client connected: /127.0.0.1:58432\n📩 [NIO Read (24 bytes)]: 'High-Performance Java NIO'\n✓ [NIO Write] Echoed back: NIO-ECHO: High-Performance Java NIO`,
+                code: `package socket_networking;
+
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.nio.ByteBuffer;
+import java.nio.channels.*;
+import java.util.Iterator;
+import java.util.Set;
+
+public class JavaNioNonBlockingEchoServer {
+    public static void main(String[] args) throws IOException {
+        Selector selector = Selector.open();
+        ServerSocketChannel serverChannel = ServerSocketChannel.open();
+        serverChannel.bind(new InetSocketAddress(7070));
+        serverChannel.configureBlocking(false);
+        serverChannel.register(selector, SelectionKey.OP_ACCEPT);
+        // Non-blocking event multiplexing loop
+    }
+}`
+            },
+            '06_RMI_and_Distributed/BankingService.java': {
+                lang: 'java',
+                title: 'BankingService.java',
+                output: `[RMI Distributed Contract]\n✓ Remote Interface 'BankingService' verified.\n• Inherits: java.rmi.Remote\n• Methods declare throws RemoteException\n• Methods: getBalance, deposit, withdraw, getAccountSummary.`,
+                code: `package rmi_and_distributed;
+
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+
+public interface BankingService extends Remote {
+    double getBalance(int accountNumber) throws RemoteException;
+    double deposit(int accountNumber, double amount) throws RemoteException;
+    double withdraw(int accountNumber, double amount) throws RemoteException;
+    String getAccountSummary(int accountNumber) throws RemoteException;
+}`
+            },
+            '09_Spring_Framework/IoCContainerAndDiDemo.java': {
+                lang: 'java',
+                title: 'IoCContainerAndDiDemo.java',
+                output: `=================================================\n   Spring IoC Container & DI Architectural Demo  \n=================================================\nInitializing MiniApplicationContext (Spring IoC Container)...\n• Instantiated Bean: UserRepository\n• Instantiated Bean: NotificationService\n• Instantiated Bean: UserService\n\nInjecting Dependencies (@Autowired)...\n  └─ Injected UserRepository into UserService.userRepository\n  └─ Injected NotificationService into UserService.notificationService\n\nExecuting @PostConstruct Lifecycle Hooks...\n  ✓ [UserRepository] @PostConstruct: Connected to simulated data store.\n  ✓ [NotificationService] @PostConstruct: Mail server template ready.\n  ✓ [UserService] @PostConstruct: Dependencies wired successfully.\n\n--- Executing Business Logic ---\n[UserService] Processing user registration for: Alice Johnson\n  [UserRepository] Saved record to DB: Alice Johnson (alice.johnson@example.com)\n  [NotificationService] 📧 Sent Email to <alice.johnson@example.com>: Welcome to Advance Java Spring Architecture!\n[UserService] Registration complete. Total users in system: 1\n\n• Singleton Scope Verification: userService == userService2: true`,
+                code: `package spring_framework;
+
+import java.lang.annotation.*;
+import java.lang.reflect.*;
+import java.util.*;
+
+public class IoCContainerAndDiDemo {
+    public static void main(String[] args) throws Exception {
+        MiniApplicationContext context = new MiniApplicationContext();
+        context.registerComponent(UserRepository.class);
+        context.registerComponent(NotificationService.class);
+        context.registerComponent(UserService.class);
+        context.refresh();
+
+        UserService userService = context.getBean(UserService.class);
+        userService.registerUser("Alice Johnson", "alice.johnson@example.com");
+    }
+}`
+            },
+            '10_Spring_Boot_and_Microservices/MicroserviceArchitectureDemo.java': {
+                lang: 'java',
+                title: 'MicroserviceArchitectureDemo.java',
+                output: `=================================================\n Spring Cloud Microservices Architecture Engine  \n=================================================\n\n--- 1. Eureka Service Registry Status ---\n• Service [STUDENT-SERVICE]: 2 active instance(s) -> [http://10.0.0.12:8081, http://10.0.0.14:8081]\n• Service [COURSE-SERVICE]: 1 active instance(s) -> [http://10.0.0.25:8082]\n• Service [PAYMENT-SERVICE]: 1 active instance(s) -> [http://10.0.0.30:8083]\n\n--- 2. Spring Cloud API Gateway Route Dispatch ---\n🌐 [API Gateway] Incoming '/api/v1/students' -> Dispatched to [STUDENT-SERVICE] at: http://10.0.0.12:8081\n🌐 [API Gateway] Incoming '/api/v1/courses' -> Dispatched to [COURSE-SERVICE] at: http://10.0.0.25:8082\n\n--- 3. Resilience4j Circuit Breaker & Fallback ---\n✓ [PaymentServiceCircuitBreaker: CLOSED] Successful call: Payment Processed ($150.00)\n\nSimulating Downstream Service Outage (Triggering Fallback)...\n⚠️ Target call failed: 503 Service Unavailable: Payment Gateway timeout\n  Fallback Execution: ✓ [Resilience4j Fallback] Queued payment for async retry queue.\n\n--- 4. Spring Boot Actuator (/actuator/health) ---\n{\n  "status": "UP",\n  "components": {\n    "db": { "status": "UP", "details": { "database": "PostgreSQL", "validationQuery": "isValid()" } },\n    "diskSpace": { "status": "UP", "details": { "free": "84.5 GB", "threshold": "10.0 GB" } },\n    "discoveryComposite": { "status": "UP", "details": { "registeredServices": 4 } }\n  }\n}`,
+                code: `package spring_boot_and_microservices;
+
+import java.util.*;
+
+public class MicroserviceArchitectureDemo {
+    public static void main(String[] args) {
+        EurekaServiceRegistry registry = new EurekaServiceRegistry();
+        registry.registerInstance("STUDENT-SERVICE", "http://10.0.0.12:8081");
+        registry.registerInstance("PAYMENT-SERVICE", "http://10.0.0.30:8083");
+
+        ApiGateway gateway = new ApiGateway(registry);
+        gateway.routeRequest("/api/v1/students");
+
+        CircuitBreaker cb = new CircuitBreaker("PaymentServiceCircuitBreaker");
+        cb.execute(() -> "Payment Processed ($150.00)", () -> "Fallback Provider Executed");
+    }
+}`
+            }
+        };
+
+        let currentFileKey = '01_AWT_and_Swing/StudentManagementSystemGUI.java';
+        let openTabs = ['01_AWT_and_Swing/StudentManagementSystemGUI.java', '03_JDBC_Database/PreparedStatementCrudDemo.java', '04_Socket_Networking/MultiThreadedChatServer.java', '09_Spring_Framework/IoCContainerAndDiDemo.java', '10_Spring_Boot_and_Microservices/MicroserviceArchitectureDemo.java'];
+
+        // File Explorer Tree Structure
+        const FILE_TREE_STRUCTURE = [
+            {
+                folder: '01_AWT_and_Swing',
+                files: [
+                    '01_AWT_and_Swing/StudentManagementSystemGUI.java',
+                    '01_AWT_and_Swing/SwingComponentsDemo.java',
+                    '01_AWT_and_Swing/LayoutManagersDemo.java'
+                ]
+            },
+            {
+                folder: '03_JDBC_Database',
+                files: [
+                    '03_JDBC_Database/PreparedStatementCrudDemo.java',
+                    '03_JDBC_Database/TransactionManagementDemo.java'
+                ]
+            },
+            {
+                folder: '04_Socket_Networking',
+                files: [
+                    '04_Socket_Networking/MultiThreadedChatServer.java',
+                    '04_Socket_Networking/JavaNioNonBlockingEchoServer.java'
+                ]
+            },
+            {
+                folder: '06_RMI_and_Distributed',
+                files: [
+                    '06_RMI_and_Distributed/BankingService.java'
+                ]
+            },
+            {
+                folder: '09_Spring_Framework',
+                files: [
+                    '09_Spring_Framework/IoCContainerAndDiDemo.java'
+                ]
+            },
+            {
+                folder: '10_Spring_Boot_and_Microservices',
+                files: [
+                    '10_Spring_Boot_and_Microservices/MicroserviceArchitectureDemo.java'
+                ]
+            }
+        ];
+
+        // Quiz Question Database
+        const QUIZ_DATA = [
+            {
+                q: "1. In JDBC, which Statement type is specifically designed to prevent SQL Injection vulnerabilities via pre-compiled parameterized queries?",
+                options: [
+                    "java.sql.Statement",
+                    "java.sql.PreparedStatement",
+                    "java.sql.CallableStatement",
+                    "java.sql.ResultSet"
+                ],
+                correct: 1,
+                explanation: "PreparedStatement pre-compiles the SQL template and treats all placeholder '?' parameters strictly as literal data, preventing attacker input from modifying the SQL command structure."
+            },
+            {
+                q: "2. Which Spring Boot annotation is a composite containing @Configuration, @EnableAutoConfiguration, and @ComponentScan?",
+                options: [
+                    "@RestController",
+                    "@Service",
+                    "@SpringBootApplication",
+                    "@EnableDiscoveryClient"
+                ],
+                correct: 2,
+                explanation: "@SpringBootApplication marks the primary entry point and enables Spring Boot's automatic configuration and package component scanning."
+            },
+            {
+                q: "3. In Java NIO, what core component allows a single thread to monitor multiple I/O channels for read/write readiness?",
+                options: [
+                    "Selector",
+                    "ByteBuffer",
+                    "ServerSocket",
+                    "InputStream"
+                ],
+                correct: 0,
+                explanation: "A Selector multiplexes multiple non-blocking SelectableChannels, allowing high-performance concurrent networking on minimal threads."
+            }
+        ];
+        let currentQuizIdx = 0;
+        let quizScore = 0;
+
+        // Initialize UI
+        window.addEventListener('DOMContentLoaded', () => {
+            renderExplorer();
+            renderTabs();
+            loadFile(currentFileKey);
+            renderQuiz();
+            setupTerminalInput();
+        });
+
+        function renderExplorer() {
+            const container = document.getElementById('file-tree-container');
+            container.innerHTML = '';
+
+            FILE_TREE_STRUCTURE.forEach(group => {
+                const folderDiv = document.createElement('div');
+
+                const folderTitle = document.createElement('div');
+                folderTitle.className = 'tree-folder-title';
+                folderTitle.innerHTML = `<span class="arrow">▼</span> 📁 ${group.folder}`;
+                folderTitle.onclick = () => {
+                    folderTitle.classList.toggle('collapsed');
+                    contentDiv.classList.toggle('hidden');
+                };
+
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'tree-folder-content';
+
+                group.files.forEach(fileKey => {
+                    const fileItem = document.createElement('div');
+                    fileItem.className = `tree-file ${fileKey === currentFileKey ? 'active' : ''}`;
+                    fileItem.innerHTML = `<span class="file-icon-java">☕</span> ${fileKey.split('/').pop()}`;
+                    fileItem.onclick = () => loadFile(fileKey);
+                    contentDiv.appendChild(fileItem);
+                });
+
+                folderDiv.appendChild(folderTitle);
+                folderDiv.appendChild(contentDiv);
+                container.appendChild(folderDiv);
+            });
+        }
+
+        function renderTabs() {
+            const tabsBar = document.getElementById('editor-tabs-bar');
+            tabsBar.innerHTML = '';
+
+            openTabs.forEach(fileKey => {
+                const tab = document.createElement('div');
+                tab.className = `editor-tab ${fileKey === currentFileKey ? 'active' : ''}`;
+                tab.innerHTML = `<span>☕</span> ${fileKey.split('/').pop()}`;
+                tab.onclick = () => loadFile(fileKey);
+                tabsBar.appendChild(tab);
+            });
+        }
+
+        function loadFile(fileKey) {
+            if (!CODE_REPOSITORY[fileKey]) return;
+            currentFileKey = fileKey;
+
+            if (!openTabs.includes(fileKey)) {
+                openTabs.push(fileKey);
+            }
+
+            document.getElementById('current-file-path').innerText = fileKey;
+            const codeObj = CODE_REPOSITORY[fileKey];
+            const codeBox = document.getElementById('code-content-box');
+            codeBox.textContent = codeObj.code;
+
+            // Render line numbers
+            const lineCount = codeObj.code.split('\n').length;
+            const lineNumCol = document.getElementById('line-numbers-col');
+            let linesHtml = '';
+            for (let i = 1; i <= lineCount; i++) {
+                linesHtml += `${i}<br>`;
+            }
+            lineNumCol.innerHTML = linesHtml;
+
+            renderExplorer();
+            renderTabs();
+        }
+
+        function executeCurrentCode() {
+            const fileObj = CODE_REPOSITORY[currentFileKey];
+            const termBox = document.getElementById('terminal-output-box');
+
+            const timestamp = new Date().toLocaleTimeString();
+            termBox.innerHTML += `<div style="color: #60a5fa; margin-top: 8px;">[${timestamp}] $ javac ${currentFileKey.split('/').pop()} && java ${currentFileKey.split('/').pop().replace('.java','')}</div>`;
+            termBox.innerHTML += `<div style="color: #e2e8f0; white-space: pre-wrap; margin: 4px 0;">${fileObj.output}</div>`;
+            termBox.innerHTML += `<div style="color: #34d399;">✓ Process finished with exit code 0.</div>`;
+            termBox.scrollTop = termBox.scrollHeight;
+        }
+
+        function copyCurrentCode() {
+            const code = CODE_REPOSITORY[currentFileKey].code;
+            navigator.clipboard.writeText(code).then(() => {
+                alert('✓ Code copied to clipboard!');
+            });
+        }
+
+        function downloadCurrentCode() {
+            const fileObj = CODE_REPOSITORY[currentFileKey];
+            const blob = new Blob([fileObj.code], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = currentFileKey.split('/').pop();
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function toggleExplorer() {
+            const exp = document.getElementById('ide-explorer');
+            exp.classList.toggle('show-mobile');
+        }
+
+        function focusTerminal() {
+            document.getElementById('terminal-cli-input').focus();
+        }
+
+        function focusSearch() {
+            const q = prompt("Enter symbol, class, or keyword to search across repository:");
+            if (q) {
+                alert(`Search results for "${q}": Found matches across 10 modules.`);
+            }
+        }
+
+        function showGitInfo() {
+            alert("Git Status: Clean working tree. Branch 'main' synchronized with origin/main.");
+        }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        function clearTerminal() {
+            document.getElementById('terminal-output-box').innerHTML = '<div style="color: #64748b;">Terminal cleared.</div>';
+        }
+
+        function setupTerminalInput() {
+            const input = document.getElementById('terminal-cli-input');
+            const output = document.getElementById('terminal-output-box');
+
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    const cmd = input.value.trim();
+                    input.value = '';
+                    if (!cmd) return;
+
+                    output.innerHTML += `<div style="color: #f89820;">advance-java@cloud:~$ ${cmd}</div>`;
+
+                    if (cmd === 'help') {
+                        output.innerHTML += `<div style="color: #94a3b8;">Available Commands:
+• <b style="color:#fff">run</b> - Compile & execute current active file
+• <b style="color:#fff">ls</b> - List enterprise modules & tracks
+• <b style="color:#fff">clear</b> - Clear terminal window
+• <b style="color:#fff">version</b> - Show Java and Spring Boot runtime versions
+• <b style="color:#fff">actuator</b> - Run simulated Spring Boot Actuator /health check
+• <b style="color:#fff">bench</b> - Run JVM performance benchmark simulation</div>`;
+                    } else if (cmd === 'run') {
+                        executeCurrentCode();
+                    } else if (cmd === 'ls') {
+                        output.innerHTML += `<div style="color: #60a5fa;">01_AWT_and_Swing/  02_Applets_and_Graphics/  03_JDBC_Database/  04_Socket_Networking/
+05_Servlets_and_Enterprise/  06_RMI_and_Distributed/  07_JSP_and_JSTL/  08_Java_Beans_and_Enterprise/
+09_Spring_Framework/  10_Spring_Boot_and_Microservices/</div>`;
+                    } else if (cmd === 'clear') {
+                        clearTerminal();
+                    } else if (cmd === 'version') {
+                        output.innerHTML += `<div style="color: #38bdf8;">OpenJDK 21.0.2 (Build 21.0.2+13-LTS) | Spring Boot v3.2.0</div>`;
+                    } else if (cmd === 'actuator') {
+                        output.innerHTML += `<div style="color: #34d399;">{"status":"UP","components":{"db":{"status":"UP"},"diskSpace":{"status":"UP"},"discoveryComposite":{"status":"UP"}}}</div>`;
+                    } else if (cmd === 'bench') {
+                        output.innerHTML += `<div style="color: #e2e8f0;">Running JVM Stream Benchmark (1,000,000 iterations)...
+✓ Single-Threaded: 14.2 ms | ParallelStream ForkJoin: 3.1 ms (4.5x speedup)</div>`;
+                    } else {
+                        output.innerHTML += `<div style="color: #f87171;">bash: command not found: ${cmd}. Type 'help' for options.</div>`;
+                    }
+                    output.scrollTop = output.scrollHeight;
+                }
+            });
+        }
+
+        // Quiz Engine
+        function renderQuiz() {
+            const data = QUIZ_DATA[currentQuizIdx];
+            document.getElementById('quiz-q-text').innerText = data.q;
+            document.getElementById('quiz-score-badge').innerText = `Question ${currentQuizIdx + 1} of ${QUIZ_DATA.length} | Score: ${quizScore}`;
+
+            const container = document.getElementById('quiz-options-container');
+            container.innerHTML = '';
+
+            const feedback = document.getElementById('quiz-feedback-box');
+            feedback.style.display = 'none';
+
+            data.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'quiz-opt-btn';
+                btn.innerText = opt;
+                btn.onclick = () => selectQuizAnswer(idx, btn);
+                container.appendChild(btn);
+            });
+        }
+
+        function selectQuizAnswer(selectedIdx, btnElement) {
+            const data = QUIZ_DATA[currentQuizIdx];
+            const feedback = document.getElementById('quiz-feedback-box');
+            const allBtns = document.querySelectorAll('.quiz-opt-btn');
+
+            allBtns.forEach(b => b.disabled = true);
+
+            if (selectedIdx === data.correct) {
+                btnElement.classList.add('correct');
+                quizScore++;
+                feedback.style.display = 'block';
+                feedback.style.background = 'rgba(46, 204, 113, 0.2)';
+                feedback.style.color = '#a7f3d0';
+                feedback.innerHTML = `✓ <b>Correct!</b> ${data.explanation}`;
+            } else {
+                btnElement.classList.add('incorrect');
+                allBtns[data.correct].classList.add('correct');
+                feedback.style.display = 'block';
+                feedback.style.background = 'rgba(231, 76, 60, 0.2)';
+                feedback.style.color = '#fca5a5';
+                feedback.innerHTML = `✗ <b>Incorrect.</b> ${data.explanation}`;
+            }
+
+            setTimeout(() => {
+                currentQuizIdx = (currentQuizIdx + 1) % QUIZ_DATA.length;
+                renderQuiz();
+            }, 3500);
+        }
+    </script>
+</body>
+</html>
