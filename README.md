@@ -1,8 +1,9 @@
 <div align="center">
 
 # ☕ Advanced Java & Enterprise Engineering Master Suite
-### *The Definitive Reference Architecture, Code Repository & Enterprise Blueprint for Advanced Java Development*
+### *The Definitive Reference Architecture, Code Repository & Interactive Web IDE for Advanced Java Development*
 
+[![Live Web IDE](https://img.shields.io/badge/Live%20Demo-Interactive%20Web%20IDE-007396?style=for-the-badge&logo=visualstudiocode&logoColor=white)](https://ken-kanike.github.io/AdvanceJava/)
 [![Java Version](https://img.shields.io/badge/Java-8%20%7C%2011%20%7C%2017%20%7C%2021%2B-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)](https://www.oracle.com/java/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)](https://spring.io/projects/spring-boot)
@@ -11,9 +12,9 @@
 
 ---
 
-### 🌐 COMPANION REPOSITORY
-Looking to master Core Java Fundamentals, OOP, Collections & Multithreading first?  
-👉 **[Visit the Companion Repository: Core Java Mastery (Ken-Kanike/java)](https://github.com/Ken-Kanike/java)** 👈
+### 🌐 COMPANION REPOSITORY & LIVE DEMO
+* 💻 **Interactive Browser IDE**: [https://ken-kanike.github.io/AdvanceJava/](https://ken-kanike.github.io/AdvanceJava/)
+* 📘 **Core Java Companion Repository**: [https://github.com/Ken-Kanike/java](https://github.com/Ken-Kanike/java) *(Covers OOP, Collections, Generics, Lambdas, and Multithreading)*
 
 ---
 
@@ -23,7 +24,7 @@ Looking to master Core Java Fundamentals, OOP, Collections & Multithreading firs
 
 Welcome to the **AdvanceJava** knowledge repository. This codebase represents an end-to-end, enterprise-grade curriculum designed to take engineers from standard Java syntax to advanced systems engineering, distributed architecture, and microservices.
 
-Every module is stand-alone, fully documented, sanitized for security, and adheres to clean architecture principles.
+Every module is stand-alone, fully documented, sanitized for security, and runnable directly inside the browser using our [Interactive Web IDE](https://ken-kanike.github.io/AdvanceJava/).
 
 ---
 
@@ -69,18 +70,18 @@ flowchart TD
 
 ---
 
-## 📂 Repository Structure & Module Catalog
+## 📂 Repository Structure & Module Catalog (153+ Source Files)
 
 ### 🎨 1. AWT & Java Swing (`01_AWT_and_Swing/` & `Swing/`)
 | File | Topic / Concept | Description |
 | :--- | :--- | :--- |
+| [`01_AWT_and_Swing/StudentManagementSystemGUI.java`](01_AWT_and_Swing/StudentManagementSystemGUI.java) | Desktop Mini-Project | Full CRUD desktop application with `TableRowSorter` real-time search, form validation, and metrics calculation. |
 | [`01_AWT_and_Swing/SwingComponentsDemo.java`](01_AWT_and_Swing/SwingComponentsDemo.java) | Core Controls & Trees | Showcase of `JFrame`, `JTabbedPane`, `JTable`, `JTree`, `JSlider`, `JProgressBar`, `JCheckBox`, `JRadioButton`. |
 | [`01_AWT_and_Swing/LayoutManagersDemo.java`](01_AWT_and_Swing/LayoutManagersDemo.java) | Layout Managers | Side-by-side comparison of `BorderLayout`, `FlowLayout`, `GridLayout`, `GridBagLayout`, `CardLayout`, and `BoxLayout`. |
 | [`01_AWT_and_Swing/EventHandlingDemo.java`](01_AWT_and_Swing/EventHandlingDemo.java) | Delegation Event Model | Event handling for `ActionListener`, `ItemListener`, `KeyListener`, `MouseListener`, and `WindowAdapter`. |
 | [`01_AWT_and_Swing/CustomGraphicsDemo.java`](01_AWT_and_Swing/CustomGraphicsDemo.java) | Java 2D Graphics | High-DPI anti-aliased rendering, linear gradients, Bézier curves, and real-time interactive drawing canvas. |
-| [`01_AWT_and_Swing/StudentManagementSystemGUI.java`](01_AWT_and_Swing/StudentManagementSystemGUI.java) | Desktop Mini-Project | Full CRUD desktop application with `TableRowSorter` real-time search, form validation, and metrics calculation. |
-| [`Swing/DemoTable.java`](Swing/DemoTable.java) | JTable | Scrollable data grid visualization. |
-| [`Swing/DemoTree.java`](Swing/DemoTree.java) & [`DemoTree2.java`](Swing/DemoTree2.java) | JTree | Hierarchical navigation nodes with TreeModel. |
+| [`Swing/DemoTable.java`](Swing/DemoTable.java) | JTable | Scrollable data grid visualization with DefaultTableModel. |
+| [`Swing/DemoTree.java`](Swing/DemoTree.java) & [`DemoTree2.java`](Swing/DemoTree2.java) | JTree | Hierarchical navigation nodes with TreeModel and TreeSelectionListener. |
 | [`Swing/PrBar1.java`](Swing/PrBar1.java) | JProgressBar | Progress tracking and bounds styling. |
 | [`Swing/Tooltips1.java`](Swing/Tooltips1.java) | Tooltips | Hover-activated tooltip styling. |
 
@@ -181,13 +182,40 @@ flowchart TD
 
 ---
 
-### 📚 11. NetBeans Projects, Academic Solns & Practicals
+### 📝 11. Practical Exam Question Bank Solutions (`AJPprExam_QBsoln/`)
+| File | Exam Question | Solution Highlights |
+| :--- | :--- | :--- |
+| [`AJPprExam_QBsoln/.../Q1.java`](AJPprExam_QBsoln/src/ajpprexam_qbsoln/Q1.java) | Q1: AWT Component Hierarchy | Labels, TextFields, Buttons, and Checkbox Groups layout. |
+| [`AJPprExam_QBsoln/.../Q2.java`](AJPprExam_QBsoln/src/ajpprexam_qbsoln/Q2.java) | Q2: AWT Checkbox & Choice | Choice dropdown and multi-select checkbox events. |
+| [`AJPprExam_QBsoln/.../Q3.java`](AJPprExam_QBsoln/src/ajpprexam_qbsoln/Q3.java) | Q3: List Box Operations | Dynamic list item addition and selection events. |
+| [`AJPprExam_QBsoln/.../Q4.java`](AJPprExam_QBsoln/src/ajpprexam_qbsoln/Q4.java) | Q4: FlowLayout & BorderLayout | Region arrangement and component positioning. |
+| [`AJPprExam_QBsoln/.../Q5.java`](AJPprExam_QBsoln/src/ajpprexam_qbsoln/Q5.java) | Q5: GridLayout Calculator | 3x3 grid matrix layout arithmetic calculator. |
+| [`AJPprExam_QBsoln/.../Q6.java`](AJPprExam_QBsoln/src/ajpprexam_qbsoln/Q6.java) | Q6: CardLayout Wizard | Multi-step interactive panel navigation. |
+| [`AJPprExam_QBsoln/.../Q7.java`](AJPprExam_QBsoln/src/ajpprexam_qbsoln/Q7.java) | Q7: MenuBar & MenuItems | Menu navigation, Shortcuts, and Dialog popups. |
+| [`AJPprExam_QBsoln/.../Q8.java`](AJPprExam_QBsoln/src/ajpprexam_qbsoln/Q8.java) | Q8: Applet Parameter Passing | Reading `<param>` tags inside `Applet.init()`. |
+| [`AJPprExam_QBsoln/.../Q9.java`](AJPprExam_QBsoln/src/ajpprexam_qbsoln/Q9.java) | Q9: Graphics Polygon & Arcs | Vector drawing of multi-point polygons and arcs. |
+| [`AJPprExam_QBsoln/.../Q10.java`](AJPprExam_QBsoln/src/ajpprexam_qbsoln/Q10.java) | Q10: MouseListener & MouseMotionListener | Mouse click coordinates, dragging, and hover effects. |
+| [`AJPprExam_QBsoln/.../Q11.java`](AJPprExam_QBsoln/src/ajpprexam_qbsoln/Q11.java) | Q11: KeyListener Keyboard Events | KeyPressed, KeyReleased, and typed character tracking. |
+| [`AJPprExam_QBsoln/.../Q12.java`](AJPprExam_QBsoln/src/ajpprexam_qbsoln/Q12.java) | Q12: WindowAdapter Close Events | Clean window closing and confirmation dialogs. |
+| [`AJPprExam_QBsoln/.../Q13.java`](AJPprExam_QBsoln/src/ajpprexam_qbsoln/Q13.java) | Q13: Swing JTabbedPane | Multi-tab container organizing controls. |
+| [`AJPprExam_QBsoln/.../Q14.java`](AJPprExam_QBsoln/src/ajpprexam_qbsoln/Q14.java) | Q14: Swing JTable & Model | Tabular record rendering and column formatting. |
+| [`AJPprExam_QBsoln/.../Q15.java`](AJPprExam_QBsoln/src/ajpprexam_qbsoln/Q15.java) | Q15: Swing JTree Hierarchies | Expandable folder hierarchy with TreeNode. |
+| [`AJPprExam_QBsoln/.../Q16.java`](AJPprExam_QBsoln/src/ajpprexam_qbsoln/Q16.java) | Q16: JProgressBar & JSlider | Slider bound events updating progress bar fill. |
+| [`AJPprExam_QBsoln/.../Q17.java`](AJPprExam_QBsoln/src/ajpprexam_qbsoln/Q17.java) | Q17: Sockets Client-Server | Bidirectional TCP message exchange. |
+| [`AJPprExam_QBsoln/.../Q18.java`](AJPprExam_QBsoln/src/ajpprexam_qbsoln/Q18.java) | Q18: JDBC Database Queries | Connecting to MySQL database and fetching rows. |
+| [`AJPprExam_QBsoln/.../Q19/`](AJPprExam_QBsoln/src/ajpprexam_qbsoln/Q19/) | Q19: Web Servlet Form Processor | Processing HTML form input and generating response. |
+| [`AJPprExam_QBsoln/.../Q20.java`](AJPprExam_QBsoln/src/ajpprexam_qbsoln/Q20.java) | Q20: Servlet Session State | Tracking user login credentials across pages. |
+
+---
+
+### 💻 12. NetBeans Projects, Practicals & Archives
 | Directory | Description |
 | :--- | :--- |
-| [`AJPprExam_QBsoln/`](AJPprExam_QBsoln/) | Solutions for standard Advance Java practical exam question bank (Q1 to Q20). |
-| [`AJP Netbeans/`](AJP%20Netbeans/) | NetBeans visual GUI projects, student management UI iterations, and event listeners. |
-| [`Practicals/`](Practicals/) | Academic laboratory practicals covering AWT lists, frames, and layouts. |
-| [`TextBook/Unit 1 - AWT/`](TextBook/Unit%201%20-%20AWT/) | Textbook reference implementations for foundational AWT components. |
+| [`AJP Netbeans/`](AJP%20Netbeans/) | NetBeans GUI designs, student management UI iterations (`StudentUI`, `StudentUI2`, `StudentUI3`), `DbCode.java`, and `AjpMicroProjectFinal.java`. |
+| [`Practicals/`](Practicals/) | Academic laboratory practical exercises covering lists, frames, and event handling (`pr1x1` to `pr2xiii2`). |
+| [`TextBook/Unit 1 - AWT/`](TextBook/Unit%201%20-%20AWT/) | Textbook reference implementations for foundational AWT components (`program1_1` to `program1_7`). |
+| [`Swing/`](Swing/) | Extensive Swing sample programs (`prg1` through `prg13`, `DemoTable`, `DemoTree`, `PrBar1`, `Tooltips1`). |
+| [`Networking/`](Networking/) | Socket networking archives (`ChatServer`, `ChatClient`, `DemoInet`, `DemoURL`, `UDPserver`, `UDPclient`). |
 | [`NetbeansJava/`](NetbeansJava/) | Maven enterprise starter application with JVM memory heap diagnostics. |
 
 ---
@@ -197,7 +225,7 @@ flowchart TD
 ### Prerequisites
 * **Java Development Kit (JDK)**: JDK 8+ (JDK 17 or 21 LTS recommended).
 * **Build Tools**: Apache Maven 3.8+ (Optional for Maven modules).
-* **Database**: MySQL Server 8.0+ (Optional for live database queries; mock simulation included).
+* **Database**: MySQL Server 8.0+ (Optional for live database queries; safe mock simulation included).
 
 ### Compiling & Running Demos
 
@@ -240,6 +268,7 @@ This repository is licensed under the **MIT License**. See the [`LICENSE`](LICEN
 <div align="center">
 
 **[AdvanceJava Repository](https://github.com/Ken-Kanike/AdvanceJava)** • Maintained by **[Ken-Kanike](https://github.com/Ken-Kanike)**  
-*Empowering developers to build high-performance, distributed, and cloud-ready Java enterprise applications.*
+*Empowering developers to build high-performance, distributed, and cloud-ready Java enterprise applications.*  
+*Looking for Core Java? Check out [Ken-Kanike/java](https://github.com/Ken-Kanike/java).*
 
 </div>
